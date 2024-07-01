@@ -29,7 +29,17 @@ Note: Java doesn't provide a sort function for the String class. We need to
 convert the String to a character array and then use Arrays.sort().
 
 Time Complexity: O(N*logN), where N is the length of the string.
-Auxiliary Space: O(1).
+Auxiliary Space: O(n).
+
+
+Method 2: We can use frequency counting. We have assumed that the input strings 
+have only lowercase English alphabets.
+
+This involves creating an empty array of size 26(corresponding to the 26 letters
+of the English alphabet) and incrementing every corresponding value of the array
+by 1 for each letter in str2. Now start traversing through str1 and for every 
+letter of str1 decrement the corresponding array values by 1. This will reset 
+the value of the array common to str1 and str2, except the extra letter's value.
  */
 
 package JavaStrings;
@@ -38,6 +48,8 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class FindOneExtraCharacter {
+
+    // Method 1
     public static char findExtra(String str1, String str2){
         char []ch1 = str1.toCharArray();
         Arrays.sort(ch1);
@@ -50,11 +62,37 @@ public class FindOneExtraCharacter {
         }
         return ch2[str1.length()];
     }
+
+    // Method 2
+    public static char findExtra2(String str1, String str2){
+        int count[] = new int[26];
+        
+        int n = str1.length();
+        
+        for(int i=0; i<n; i++)
+        {
+            count[str2.charAt(i) - 'a']++;
+            count[str1.charAt(i) - 'a']--;
+        }
+        
+        count[str2.charAt(n) - 'a']++;
+        
+        for(int i=0; i<26; i++)
+        {
+            if(count[i] == 1)
+                return (char)(i + 'a');
+        }
+        
+        return 0;
+    }
     public static void main(String[] args) {
         String str1 = "abcd";
         String str2 = "aecd";
 
         char res = findExtra(str1, str2);
         System.out.println(res);
+
+        char res2 = findExtra2(str1, str2);
+        System.out.println(res2);
     }
 }
