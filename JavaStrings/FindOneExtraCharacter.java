@@ -64,27 +64,27 @@ public class FindOneExtraCharacter {
     }
 
     // Method 2
-    public static char findExtra2(String str1, String str2){
-        int count[] = new int[26];
+    // public static char findExtra2(String str1, String str2){
+    //     int count[] = new int[26];
         
-        int n = str1.length();
+    //     int n = str1.length();
         
-        for(int i=0; i<n; i++)
-        {
-            count[str2.charAt(i) - 'a']++;
-            count[str1.charAt(i) - 'a']--;
-        }
+    //     for(int i=0; i<n; i++)
+    //     {
+    //         count[str2.charAt(i) - 'a']++;
+    //         count[str1.charAt(i) - 'a']--;
+    //     }
         
-        count[str2.charAt(n) - 'a']++;
+    //     count[str2.charAt(n) - 'a']++;
         
-        for(int i=0; i<26; i++)
-        {
-            if(count[i] == 1)
-                return (char)(i + 'a');
-        }
+    //     for(int i=0; i<26; i++)
+    //     {
+    //         if(count[i] == 1)
+    //             return (char)(i + 'a');
+    //     }
         
-        return 0;
-    }
+    //     return 0;
+    // }
     public static void main(String[] args) {
         String str1 = "abcd";
         String str2 = "aecd";
@@ -92,7 +92,7 @@ public class FindOneExtraCharacter {
         char res = findExtra(str1, str2);
         System.out.println(res);
 
-        char res2 = findExtra2(str1, str2);
-        System.out.println(res2);
+        // char res2 = findExtra2(str1, str2);
+        // System.out.println(res2);
     }
 }
